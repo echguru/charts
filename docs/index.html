@@ -174,10 +174,12 @@ html{background:radial-gradient(circle at bottom, #125, #122, #100);background-a
 			-->
 			<br>
 			<select onchange="f1((this.value).split(','))" style="background:#000;color:#fff;border-radius:25px">
-				<option value="0x3F434934e448435391fceAA075F5b35656921A26,0"> ECH/ECHOGE (echSwap)</option>
-				<option value="0x3F434934e448435391fceAA075F5b35656921A26,1"> ECHOGE/ECH (echSwap)</option>
-				<option value="0x70F1B4611698F0Ca7BFAdd016A09ec6A8667632B,0"> ECH/ECS (echSwap)</option>
-				<option value="0x70F1B4611698F0Ca7BFAdd016A09ec6A8667632B,1"> ECS/ECH (echSwap)</option>
+				<option value="0x3F434934e448435391fceAA075F5b35656921A26,0,18,18"> ECH/ECHOGE (echSwap)</option>
+				<option value="0x3F434934e448435391fceAA075F5b35656921A26,1,18,18"> ECHOGE/ECH (echSwap)</option>
+				<option value="0x70F1B4611698F0Ca7BFAdd016A09ec6A8667632B,0,18,18"> ECH/ECS (echSwap)</option>
+				<option value="0x70F1B4611698F0Ca7BFAdd016A09ec6A8667632B,1,18,18" selected> ECS/ECH (echSwap)</option>
+				<option value="0x3B48CA39336740de17dabf4d8197279431f63b6A,0, 9,18"> ECH/ESHIB (echSwap)</option>
+				<option value="0x3B48CA39336740de17dabf4d8197279431f63b6A,1, 9,18"> ESHIB/ECH (echSwap)</option>
 			</select>
 			<br>
 			<br>
@@ -210,7 +212,9 @@ html{background:radial-gradient(circle at bottom, #125, #122, #100);background-a
 -->
 <h3>Our ECH Treasury Address:</h3>
 0x167d87a906da361a10061fe42bbe89451c2ee584<br>
-<i>Donations will be used to booststrap our <b>Validator</b> for the Echelon Network</i>
+<i>Donations will be used to booststrap our <b>Validator</b> for the Echelon Network</i><br>
+<pre>[---------- <span id="treab">0</span> / 1000000 ECH ----------]</pre>
+Liquid Staking Receipt Tokens will be provided at a later date.
 <h2 align="center">(🦾,🚀)</h2>
 <br><br>
 <div class="lowerbar">Powered by Guru Network.
@@ -356,12 +360,13 @@ window.addEventListener('load',function()
 	else{web3 = new Web3("https://rpc.ech.network")}
 	//basics();
 	//console.log("in basics")
-	f1(["0x3F434934e448435391fceAA075F5b35656921A26",1])
+	f1(["0x3F434934e448435391fceAA075F5b35656921A26",1,18,18])
 }, false);
 
 trd=[];
 trd2=[];
 store=[];
+initbh = 24e4;
 async function f1(addinv)
 {
 	/*
@@ -369,10 +374,10 @@ async function f1(addinv)
 		.then(dd=>{return dd.json()})
 		.then(dm=>{trd=dm;store=dm;f2(trd);})
 	*/
+	cbh = await web3.eth.getBlockNumber()
+	ibh = cbh - 9900
 	console.log("gettin logs")
-	logs = await web3.eth.getPastLogs({address:addinv[0],topics:["0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1"],fromBlock:
-	//(await web3.eth.getBlockNumber() - 10010 )
-	240000,toBlock:"latest"})
+	logs = await web3.eth.getPastLogs({address:addinv[0],topics:["0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1"],fromBlock:ibh,toBlock:"latest"})
 	ticks = []
 	console.log("got logs",logs)
 	/*
@@ -380,9 +385,12 @@ async function f1(addinv)
 	7967274	-->	1648626251
 	*/
 	for(i=0;i< logs.length;i++){
-	ticks.push([(logs[i].blockNumber-4380652)*3000+1637866385000,addinv[1]==0?Number(logs[i].data.substr(0,66))/Number("0x"+logs[i].data.substr(66,64)):Number("0x"+logs[i].data.substr(66,64))/Number(logs[i].data.substr(0,66))])
+	ticks.push([(logs[i].blockNumber)*6000+1649822400000,addinv[1]==0?Number(logs[i].data.substr(0,66))/Number("0x"+logs[i].data.substr(66,64)):Number("0x"+logs[i].data.substr(66,64))/Number(logs[i].data.substr(0,66))])
 	}
 	console.log("see tics",ticks)
+	console.log("see adinv",addinv)
+	for(i=0;i< ticks.length;i++){ticks[i][1] /= addinv[1] == 0 ? 10**(addinv[2]-addinv[3]) : 10**(addinv[3]-addinv[2]) }
+	console.log("see ftics",ticks)
 	await f2(ticks)
 }
 async function f2(d)
