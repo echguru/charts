@@ -9,6 +9,9 @@
 </head>
 <link rel="shortcut icon" href="../img/ftm1337.jpg" />
 <style>
+*{
+scroll-behavior: smooth !important;
+}
 *{text-shadow:10px 10px 5px black;color:#e3e9f2}
 #midleft{display:grid;grid-template-columns:auto}
 #toparea,*{text-align:center}
@@ -178,8 +181,8 @@ html{background:radial-gradient(circle at bottom, #125, #122, #100);background-a
 				<option value="0x3F434934e448435391fceAA075F5b35656921A26,1,18,18"> ECHOGE/ECH (echSwap)</option>
 				<option value="0x70F1B4611698F0Ca7BFAdd016A09ec6A8667632B,0,18,18"> ECH/ECS (echSwap)</option>
 				<option value="0x70F1B4611698F0Ca7BFAdd016A09ec6A8667632B,1,18,18" selected> ECS/ECH (echSwap)</option>
-				<option value="0x3B48CA39336740de17dabf4d8197279431f63b6A,0, 9,18"> ECH/ESHIB (echSwap)</option>
-				<option value="0x3B48CA39336740de17dabf4d8197279431f63b6A,1, 9,18"> ESHIB/ECH (echSwap)</option>
+				<option value="0x3B48CA39336740de17dabf4d8197279431f63b6A,0, 9,18"> ECH/ESHIB (eliteSwap)</option>
+				<option value="0x3B48CA39336740de17dabf4d8197279431f63b6A,1, 9,18"> ESHIB/ECH (eliteSwap)</option>
 			</select>
 			<br>
 			<br>
@@ -210,11 +213,12 @@ html{background:radial-gradient(circle at bottom, #125, #122, #100);background-a
 <a href="https://swap.spiritswap.finance/#/add/FTM/0xf43cc235e686d7bc513f53fbffb61f760c3a1882" target="_blank"><button>Spirit</button></a>
 <a href="https://dex.zoocoin.cash/orders/market?inputCurrency=0xf43Cc235E686d7BC513F53Fbffb61F760c3a1882&outputCurrency=FTM" target="_blank"><button>ZDEX</button></a>
 -->
-<h3>Our ECH Treasury Address:</h3>
+<h2>SEND ECH FOR GAS PLS SERS</h2>
+<!--<h3>Our ECH Address:</h3>-->
 0x167d87a906da361a10061fe42bbe89451c2ee584<br>
-<i>Donations will be used to booststrap our <b>Validator</b> for the Echelon Network</i><br>
+<!--<i>Donations will be used to booststrap our <b>Validator</b> for the Echelon Network</i><br>
 <pre>[---------- <span id="treab">0</span> / 1000000 ECH ----------]</pre>
-Liquid Staking Receipt Tokens will be provided at a later date.
+Liquid Staking Receipt Tokens will be provided at a later date to all contributors.-->
 <h2 align="center">(🦾,🚀)</h2>
 <br><br>
 <div class="lowerbar">Powered by Guru Network.
@@ -361,6 +365,7 @@ window.addEventListener('load',function()
 	//basics();
 	//console.log("in basics")
 	f1(["0x3F434934e448435391fceAA075F5b35656921A26",1,18,18])
+	$("treab").innerHTML = Number(await web3.eth.getBalance("0x167d87a906da361a10061fe42bbe89451c2ee584")).toFixed(2)
 }, false);
 
 trd=[];
