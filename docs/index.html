@@ -186,6 +186,8 @@ html{background:radial-gradient(circle at bottom, #125, #122, #100);background-a
 			<option value="0x3B48CA39336740de17dabf4d8197279431f63b6A,1, 9,18"> ESHIB/ECH (eliteSwap)</option>
 			<option value="0xddf92bacacfae1e483c6e9c6c2bf285b9ef8d62a,0, 9,18"> ECH/ECHINU (echSwap)</option>
 			<option value="0xddf92bacacfae1e483c6e9c6c2bf285b9ef8d62a,1, 9,18" selected> ECHINU/ECH (echSwap)</option>
+			<option value="0xA25CF2dcf1175Bf10EaC5601436983a16e7b2EFc,0, 5,18,261017"> ECHO/ECH (echSwap)</option>
+			<option value="0xA25CF2dcf1175Bf10EaC5601436983a16e7b2EFc,1, 5,18,261017"> ECH/ECHO (echSwap)</option>
 			<!-- make selected tick in onLoad -->
 		</select>
 		<br>
@@ -406,15 +408,21 @@ async function f1(addinv)
 	cbh = await web3.eth.getBlockNumber()
 	ibh = cbh - 9900
 	console.log("gettin logs")
-	logs = await web3.eth.getPastLogs({address:addinv[0],topics:["0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1"],fromBlock:ibh,toBlock:"latest"})
+	logs = await web3.eth.getPastLogs({
+		address:addinv[0],topics:["0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1"],
+		fromBlock:typeof addinv[4] == "undefined" ? ibh : addinv[4],toBlock:"latest"})
 	ticks = []
 	console.log("got logs",logs)
 	/*
 	4380652	-->	1637866385
 	7967274	-->	1648626251
 	*/
-	for(i=0;i< logs.length;i++){
-	ticks.push([(logs[i].blockNumber)*6000+1649822400000,addinv[1]==0?Number(logs[i].data.substr(0,66))/Number("0x"+logs[i].data.substr(66,64)):Number("0x"+logs[i].data.substr(66,64))/Number(logs[i].data.substr(0,66))])
+	for(i=0;i< logs.length;i++)
+	{
+		if(	isFinite(addinv[1]==0?Number(logs[i].data.substr(0,66))/Number("0x"+logs[i].data.substr(66,64)):Number("0x"+logs[i].data.substr(66,64))/Number(logs[i].data.substr(0,66)))	)
+		{
+			ticks.push([(logs[i].blockNumber)*6000+1649822400000,addinv[1]==0?Number(logs[i].data.substr(0,66))/Number("0x"+logs[i].data.substr(66,64)):Number("0x"+logs[i].data.substr(66,64))/Number(logs[i].data.substr(0,66))])
+		}
 	}
 	console.log("see tics",ticks)
 	console.log("see adinv",addinv)
