@@ -181,11 +181,11 @@ html{background:radial-gradient(circle at bottom, #125, #122, #100);background-a
 			<option value="0x3F434934e448435391fceAA075F5b35656921A26,0,18,18"> ECH/ECHOGE (echSwap)</option>
 			<option value="0x3F434934e448435391fceAA075F5b35656921A26,1,18,18"> ECHOGE/ECH (echSwap)</option>
 			<option value="0x70F1B4611698F0Ca7BFAdd016A09ec6A8667632B,0,18,18"> ECH/ECS (echSwap)</option>
-			<option value="0x70F1B4611698F0Ca7BFAdd016A09ec6A8667632B,1,18,18"> ECS/ECH (echSwap)</option>
+			<option value="0x70F1B4611698F0Ca7BFAdd016A09ec6A8667632B,1,18,18" selected> ECS/ECH (echSwap)</option>
 			<option value="0x3B48CA39336740de17dabf4d8197279431f63b6A,0, 9,18"> ECH/ESHIB (eliteSwap)</option>
 			<option value="0x3B48CA39336740de17dabf4d8197279431f63b6A,1, 9,18"> ESHIB/ECH (eliteSwap)</option>
 			<option value="0xddf92bacacfae1e483c6e9c6c2bf285b9ef8d62a,0, 9,18"> ECH/ECHINU (echSwap)</option>
-			<option value="0xddf92bacacfae1e483c6e9c6c2bf285b9ef8d62a,1, 9,18" selected> ECHINU/ECH (echSwap)</option>
+			<option value="0xddf92bacacfae1e483c6e9c6c2bf285b9ef8d62a,1, 9,18"> ECHINU/ECH (echSwap)</option>
 			<option value="0xA25CF2dcf1175Bf10EaC5601436983a16e7b2EFc,0, 5,18,261017"> ECHO/ECH (echSwap)</option>
 			<option value="0xA25CF2dcf1175Bf10EaC5601436983a16e7b2EFc,1, 5,18,261017"> ECH/ECHO (echSwap)</option>
 			<!-- make selected tick in onLoad -->
@@ -208,12 +208,12 @@ html{background:radial-gradient(circle at bottom, #125, #122, #100);background-a
 <br><br>
 <span id="f1_m"></span>
 <br><br>
-
+<!--
 <div class="ads">
 (Sponsored Ad)<br>
 <a href="https://t.me/echeems" target="_blank"><img src="ads/ad_echeems2.gif"></a>
 </div>
-<br><br>
+<br><br>-->
 <div align="center" class="advert">
 <!--
 <pre>Get $ELITE Tokens
@@ -390,7 +390,7 @@ window.addEventListener('load',async function()
 	else{web3 = new Web3("https://rpc.ech.network")}
 	//basics();
 	//console.log("in basics")
-	f1(["0xddf92bacacfae1e483c6e9c6c2bf285b9ef8d62a",1, 9,18])
+	f1(["0x70F1B4611698F0Ca7BFAdd016A09ec6A8667632B",1,18,18])
 	$("treab").innerHTML = (Number(await web3.eth.getBalance("0x167d87a906da361a10061fe42bbe89451c2ee584"))/1e18).toFixed(2)
 }, false);
 
