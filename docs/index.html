@@ -203,7 +203,7 @@ html{background:radial-gradient(circle at bottom, #125, #122, #100);background-a
 	Asset Token's Decimals: <input id="cusp_da" type="number" placeholder="Asset Decimals" value="18"><br>
 	Base Quote's Decimals: <input id="cusp_db" type="number" placeholder="Base Decimals" value="18"><br>
 	Invert the Chart? <select id="cusp_i" style="background:#000;color:#fff;border-radius:25px"><option value="0">No</option><option value="1">Yes</option></select><br><br>
-	<button onclick="f1(new Array( $('cusp_p').value),$('cusp_i').value),$('cusp_da').value),$('cusp_db').value))" style="font-size:1.25em">Plot Graph!</button>
+	<button onclick="f1(new Array( $('cusp_p').value,$('cusp_i').value,$('cusp_da').value,$('cusp_db').value))" style="font-size:1.25em">Plot Graph!</button>
 </details>
 <br><br>
 <span id="f1_m"></span>
@@ -393,7 +393,7 @@ window.addEventListener('load',async function()
 	//basics();
 	//console.log("in basics")
 	f1(["0x70F1B4611698F0Ca7BFAdd016A09ec6A8667632B",1,18,18])
-	$("treab").innerHTML = (Number(await web3.eth.getBalance("0x167d87a906da361a10061fe42bbe89451c2ee584"))/1e18).toFixed(2)
+	//$("treab").innerHTML = (Number(await web3.eth.getBalance("0x167d87a906da361a10061fe42bbe89451c2ee584"))/1e18).toFixed(2)
 }, false);
 
 trd=[];
